@@ -1,8 +1,8 @@
 #=====================================================================================#
 # PURPOSE : Application 0f Wavelet-ARIMA hybrid model for forecasting time series     #
 # AUTHOR  : Ranjit Kumar Paul and Sandipan Samanta                                    #
-# DATE    : 24 October, 2017                                                          #
-# VERSION : Ver 0.1.0                                                                 #
+# DATE    : 06 June, 2018                                                          #
+# VERSION : Ver 0.1.1                                                                 #
 #=====================================================================================#
 
 #---------------------------------------------------------------------------------------#
@@ -20,7 +20,7 @@ WaveletFittingarma<- function(ts,Waveletlevels,boundary,FastFlag,MaxARParam,MaxM
 
 {
   WS <- WaveletFitting(ts=ts,Wvlevels=Waveletlevels,bndry=boundary,FFlag=FastFlag)$WaveletSeries
-  AllWaveletForecast <- NULL
+  AllWaveletForecast <- NULL;AllWaveletPrediction <- NULL
   #-----------------------------------------------------------#
   # Fitting of ARIMA model to the Wavelet Coef                #
   #-----------------------------------------------------------#
@@ -30,11 +30,12 @@ WaveletFittingarma<- function(ts,Waveletlevels,boundary,FastFlag,MaxARParam,MaxM
     ts <- WS[,WVLevel]
     WaveletARMAFit <- forecast::auto.arima(x=as.ts(ts), d=NA, D=NA, max.p=MaxARParam, max.q=MaxMAParam,stationary=FALSE,
                                            seasonal=FALSE,ic=c("aic"), allowdrift=FALSE, allowmean=TRUE,stepwise = TRUE)
-
+    WaveletARIMAPredict <- WaveletARMAFit$fitted
     WaveletARIMAForecast <- forecast::forecast(WaveletARMAFit,h=NForecast)
-
+    AllWaveletPrediction <- cbind(AllWaveletPrediction,WaveletARIMAPredict)
     AllWaveletForecast <- cbind(AllWaveletForecast,as.matrix(WaveletARIMAForecast$mean))
   }
   Finalforecast <- rowSums(AllWaveletForecast,na.rm = T)
- return(Finalforecast)
+  FinalPrediction <- rowSums(AllWaveletPrediction,na.rm = T)
+  return(list(Finalforecast=Finalforecast,FinalPrediction=FinalPrediction))
 }
