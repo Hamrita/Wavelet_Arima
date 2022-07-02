@@ -1,5 +1,5 @@
-6b8fc39af063988553dae1a410860077 *DESCRIPTION
-b42e767132de173a5bfefb16da05ef0f *NAMESPACE
-836a82d40231dd523db11f3f9b6a0b71 *R/WaveletArima.R
-e2e9136604210675f1edc4e58f9dd43c *man/WaveletFitting.Rd
-873c9722c72a660494ee8d7498aba1f8 *man/WaveletFittingarma.Rd
+397de1c55f83796e264dc89628d239ce *DESCRIPTION
+667f1c00d5f541405d267a18a58c0cfb *NAMESPACE
+dd91d187320f5c88d094fd974da32397 *R/WaveletFittingarma.R
+ea91b424d806075340bd1f101992a2b8 *man/WaveletFitting.Rd
+2092e00cf4cccc6e4b78feb39a688d7c *man/WaveletFittingarma.Rd
