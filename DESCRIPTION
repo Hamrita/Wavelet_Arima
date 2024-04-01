@@ -1,4 +1,4 @@
-Package: WaveletArima
+Package: Wavelet_Arima
 Type: Package
 Title: Wavelet-ARIMA Model for Time Series Forecasting
 Version: 0.1.2
