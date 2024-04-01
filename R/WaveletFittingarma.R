@@ -27,7 +27,7 @@
 WaveletFitting <- function(ts,WFilter="haar",Wvlevels,bndry='periodic',FFlag=TRUE)
 {
   mraout <- wavelets::mra(ts, filter=WFilter, n.levels=Wvlevels,boundary=bndry, fast=FFlag, method="modwt")
-  WaveletSeries <- cbind(do.call(cbind,mraout@W),mraout@V[[Wvlevels]])
+  WaveletSeries <- cbind(do.call(cbind,mraout@D),mraout@S[[Wvlevels]])
   return(list(WaveletSeries=WaveletSeries,WVSeries=mraout))
 }
 
